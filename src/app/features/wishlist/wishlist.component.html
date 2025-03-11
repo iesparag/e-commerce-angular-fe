@@ -1,0 +1,42 @@
+<div class="wishlist-container">
+    <ng-container *ngIf="wishlistList$ | async as wishlistItems">
+        <!-- Show header and cards only if wishlistItems has items -->
+        <ng-container *ngIf="wishlistItems.length > 0; else noItems">
+            <h1 class="favorite-heading">Favorite</h1>
+            <h3 class="heading">WishList Items</h3>
+
+            <!-- ✅ New Card Layout -->
+            <div class="wishlist-grid">
+                <div class="wishlist-card" *ngFor="let item of wishlistItems">
+                    <img [src]="item?.images?.[0]" alt="Product Image" class="wishlist-image" />
+
+                    <div class="wishlist-content">
+                        <h3 class="wishlist-title">{{ item.name }}</h3>
+                        <p class="wishlist-description">{{ item.description }}</p>
+                        <p class="wishlist-price">₹ {{ item.price }}</p>
+
+                        <div class="action-buttons">
+                            <button mat-raised-button color="primary" (click)="moveToCart(item)">
+                                <mat-icon>shopping_cart</mat-icon> Move to Cart
+                            </button>
+                            <button mat-raised-button color="warn" (click)="deleteFromWishlist(item)">
+                                <mat-icon>delete</mat-icon> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Show this message if there are no wishlist items -->
+        <ng-template #noItems>
+            <app-empty-state
+                image="wishlist.png"
+                heading="Your wishlist is empty!"
+                message="Looks like you haven’t added anything to your wishlist yet."
+                actionLink="/home"
+                buttonText="Start Adding">
+            </app-empty-state>
+        </ng-template>
+    </ng-container>
+</div>

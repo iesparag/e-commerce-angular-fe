@@ -1,0 +1,37 @@
+<div class="wishlist-container">
+  <h3 class="heading">Save For Later</h3>
+
+  <ng-container *ngIf="SaveForLaterList$ | async as saveForLaterItems">
+    <!-- Conditionally show cards only if there are items -->
+    <ng-container *ngIf="saveForLaterItems.length > 0; else noItems">
+      <div class="wishlist-grid">
+        <div class="wishlist-card" *ngFor="let item of saveForLaterItems">
+          <img [src]="item?.images?.[0]" alt="Product Image" class="wishlist-image" />
+
+          <div class="wishlist-content">
+            <h3 class="wishlist-title">{{ item.name }}</h3>
+            <p class="wishlist-description">{{ item.description }}</p>
+            <p class="wishlist-price">₹ {{ item.price }}</p>
+
+            <div class="action-buttons">
+              <button mat-raised-button color="primary" (click)="moveToCartFromSaveForLater(item)">
+                <mat-icon>shopping_cart</mat-icon> Move to Cart
+              </button>
+              <button mat-raised-button color="warn" (click)="deleteFromSaveForLate(item)">
+                <mat-icon>delete</mat-icon> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- No Items Message -->
+    <ng-template #noItems>
+      <app-empty-state
+        heading="Your Save For Later is empty!"
+        message="Looks like you haven’t added anything to your Save For Later yet.">
+      </app-empty-state>
+    </ng-template>
+  </ng-container>
+</div>

@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.common_Buttons {
+  height: 40px;
+  width: auto;
+  padding: 5px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.heading {
+  margin-bottom: 15px;
+  font-size: 32px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  font-weight: 700;
+  color: #333;
+  // text-align: center;
+  font-family: "Arial", sans-serif;
+  letter-spacing: 1px;
+  white-space: nowrap ;
+}
+
+
+.btn-css {
+  display: inline-block;
+  background-color: #ff3f6c;
+  color: #fff;
+  // padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-css:hover {
+  background-color: #ff3f6c;
+  text-decoration: none;
+}
+
+
+
+  .navbar-brand a {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff3f6c;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+
+  
+::ng-deep.swiper-button-next, 
+::ng-deep.swiper-button-prev{
+                color: red;
+                fill: red;
+}
