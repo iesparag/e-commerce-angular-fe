@@ -7,6 +7,8 @@ import { Category } from '../../core/types/category.interface';
 import { Observable, of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { selectCategories, selectCategoryError } from './state/landing-page.selectors';
+import { selectIsAuthenticated } from '../auth/state/auth.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -28,6 +30,16 @@ export class LandingPageComponent implements OnInit {
     "https://m.media-amazon.com/images/I/61BY9H1ltgL.jpg",
   ];
   
+  constructor(private router:Router){
+    const isAuthenticated$ = this.store.select(selectIsAuthenticated)
+    isAuthenticated$.subscribe((isAuthenticated:boolean)=> {
+      if(!isAuthenticated){
+        this.router.navigate(['login'])
+      };
+    }
+    )
+    console.log('isAuthenticated: ', isAuthenticated$);
+  }
   ngOnInit(): void {
     this.onLoadCategories();
     this.categories$ = this.store.select(selectCategories);
